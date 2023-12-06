@@ -98,6 +98,30 @@
             <option value="82.196.177.108">82.196.177.108</option>
             </select>
         </div>
+                 <!-- New Checkboxes for SNMP, Web managment, Web management -->
+                 <div class="vlan-entry">
+                    <label for="disableSnmpAccess">Disable SNMP Access?</label>
+                    <input type="checkbox" id="disableSnmpAccess">
+                    <p class="info">Disable SNMP server access if checked.</p>
+                </div>
+
+                <div class="vlan-entry">
+                    <label for="disableWebManagement">Disable Web Management Access?</label>
+                    <input type="checkbox" id="disableWebManagement">
+                    <p class="info">Disable web management via HTTP if checked.</p>
+                </div>
+
+                <div class="vlan-entry">
+                    <label for="disableWebManagementByHp">Disable Web Management by HP ProCurve Manager?</label>
+                    <input type="checkbox" id="disableWebManagementByHp">
+                    <p class="info">Disable web management by HP ProCurve Manager if checked.</p>
+                </div>
+
+                <div class="vlan-entry">
+                    <label for="jumbo">Jumbo?</label>
+                    <input type="checkbox" id="jumbo">
+                    <p class="info">Enable jumbo frames if checked.</p>
+                </div>
                 <!-- Button to generate the configuration -->
                 <div>
                     <button type="submit" class="gul">Generate Configuration;</button>

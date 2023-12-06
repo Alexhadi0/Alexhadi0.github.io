@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
         switchConfig.szActiveList = this.value ? "sz active-list " + this.value : "";
     });
     
+    // New Event listeners for SNMP, Web managment, Web management HP, Jumbo
+    document.getElementById('disableSnmpAccess').addEventListener('change', handleDisableSnmpAccessChange);
+    document.getElementById('disableWebManagement').addEventListener('change', handleDisableWebManagementChange);
+    document.getElementById('disableWebManagementByHp').addEventListener('change', handleDisableWebManagementByHpChange);
+    document.getElementById('jumbo').addEventListener('change', handleJumboChange);
 });
 
 // New functions for handling TFTP and Telnet VLAN checkboxes
@@ -58,12 +63,50 @@ function handleAaaAccessChange() {
     }
 }
 
+// New functions for SNMP, Web managment, Web management HP, Jumbo
+function handleDisableSnmpAccessChange() {
+    if (this.checked) {
+        switchConfig.disableSnmp = "no snmp-server";
+    } else {
+        switchConfig.disableSnmp = "";
+    }
+}
+
+function handleDisableWebManagementChange() {
+    if (this.checked) {
+        switchConfig.disableWebManagement = "no web-management http";
+    } else {
+        switchConfig.disableWebManagement = "";
+    }
+}
+
+function handleDisableWebManagementByHpChange() {
+    if (this.checked) {
+        switchConfig.disableWebManagementByHp = "no web-management hp-top-tools";
+    } else {
+        switchConfig.disableWebManagementByHp = "";
+    }
+}
+
+function handleJumboChange() {
+    if (this.checked) {
+        switchConfig.jumbo = "jumbo";
+    } else {
+        switchConfig.jumbo = "no jumbo";
+    }
+}
+
+
 // configuration object
 let switchConfig = {
     tftp: "",
     telnetVlan: "",
     restrictAaaAccess: "",
-    szActiveList: ""
+    szActiveList: "",
+    disableSnmp: "",
+    disableWebManagement: "",
+    disableWebManagementByHp: "",
+    jumbo: "",
 };
 
 // Function to add a new VLAN configuration field
@@ -125,6 +168,20 @@ function generateConfig(event) {
     }
     if (switchConfig.szActiveList) {
         config += switchConfig.szActiveList + '\n';
+    }
+    
+        // Include Additional Options
+    if (switchConfig.disableSnmp) {
+        config += switchConfig.disableSnmp + '\n';
+    }
+    if (switchConfig.disableWebManagement) {
+        config += switchConfig.disableWebManagement + '\n';
+    }
+    if (switchConfig.disableWebManagementByHp) {
+        config += switchConfig.disableWebManagementByHp + '\n';
+    }
+    if (switchConfig.jumbo) {
+        config += 'device(config)# ' + switchConfig.jumbo + '\n';
     }
 
     // Process each VLAN entry and add to configuration
