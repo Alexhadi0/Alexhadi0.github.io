@@ -28,6 +28,8 @@
                                 <input type="text" id="mgmtsubnet" placeholder="255.255.255.128" required>
                             </div>
 
+                            
+                            
                             <!-- Section for VLAN configurations -->
                             <h2>VLAN Configurations</h2>
                             <div id="vlanSection" class="vlan-section">
@@ -70,21 +72,44 @@
                             <button type="button" id="addPortLabelBtn">Add More Port Label</button>
                             <button type="button" id="removePortLabelBtn">Remove Last Port Label</button>
 
+                            
                             <!-- New Checkboxes for TFTP and Telnet VLAN -->
                             <div class="vlan-entry">
-                            <label for="disableTftp">Disable TFTP</label>
-                            <input type="checkbox" id="disableTftp">
-                            <p class="info">TFTP client access is enabled or disabled.</p>
+                                <label for="disableTftp">Disable TFTP</label>
+                                <input type="checkbox" id="disableTftp">
+                                <p class="info">TFTP client access is enabled or disabled.</p>
+                                </div>
+                                            
+                                <div class="vlan-entry">
+                                <label for="specificTelnetVlan">Specific Telnet VLAN?</label>
+                                <input type="checkbox" id="specificTelnetVlan">
+                                <div id="vlanInputContainer" style="display: none;">
+                                <label for="telnetVlanNumber">VLAN Number:</label>
+                                <input type="text" id="telnetVlanNumber" placeholder="Enter VLAN Number">
                             </div>
-                                        
-                            <div class="vlan-entry">
-                            <label for="specificTelnetVlan">Specific Telnet VLAN?</label>
-                            <input type="checkbox" id="specificTelnetVlan">
-                            <div id="vlanInputContainer" style="display: none;">
-                            <label for="telnetVlanNumber">VLAN Number:</label>
-                            <input type="text" id="telnetVlanNumber" placeholder="Enter VLAN Number">
                         </div>
-                    </div>
+
+                            <!-- Section for inputting MGMT VLAN configurations -->
+                            <div class="vlan-entry">
+                                <label for="assignMgmtVlan">Assign MGMT VLAN:</label>
+                                <input type="checkbox" id="assignMgmtVlan">
+                            
+                                <!-- Initially hidden fields for MGMT VLAN configuration -->
+                                <div id="mgmtVlanConfig" style="display: none;">
+                                    <label for="mgmtVlan">Management VLAN:</label>
+                                    <input type="text" id="mgmtVlan">
+                            
+                                    <label for="untaggedEthernet">Untagged Ethernet (e.g., 1/1/1 to 1/1/4):</label>
+                                    <input type="text" id="untaggedEthernet">
+                            
+                                    <label for="defaultGateway1">Default Gateway 1:</label>
+                                    <input type="text" id="defaultGateway1">
+                            
+                                    <label for="defaultGateway2">Default Gateway 2:</label>
+                                    <input type="text" id="defaultGateway2">
+                                </div>
+                            </div>
+
                     <!-- New Checkboxes for Enable SSH Timeout:-->
                     <div class="vlan-entry">
                         <label for="enableSshTimeout">Enable SSH Timeout:</label>

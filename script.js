@@ -38,7 +38,14 @@
                                     sshTimeoutLabel.style.display = 'none'; // Hide the label
                                 }
                             });
-                        });
+
+                                 // Event listener for the Assign MGMT VLAN checkbox
+                                document.getElementById('assignMgmtVlan').addEventListener('change', function() {
+                                 const mgmtVlanConfig = document.getElementById('mgmtVlanConfig');
+                                 mgmtVlanConfig.style.display = this.checked ? 'block' : 'none';
+                                });
+                            });
+                        
 
 
                         // New functions for handling TFTP and Telnet VLAN checkboxes
@@ -183,7 +190,7 @@
                                 config += switchConfig.szActiveList + '\n';
                             }
                             
-                                // Include Additional Options
+                            // Include Additional Options
                             if (switchConfig.disableSnmp) {
                                 config += switchConfig.disableSnmp + '\n';
                             }
@@ -206,8 +213,7 @@
                                 }
                                 config += 'ip ssh timeout ' + sshTimeoutValue + '\n';
                             }
-
-                                                    
+                            
                             // Process each VLAN entry and add to configuration
                             const vlanEntries = document.querySelectorAll('.vlan-entry');
                             vlanEntries.forEach(entry => {
@@ -229,20 +235,49 @@
                                 }
                             });
 
-                         // Handle Port Labels
+                            // Handle Port Labels
                             const portLabelEntries = document.querySelectorAll('#portLabelSection .vlan-entry');
                             portLabelEntries.forEach(entry => {
-                            const portRange = entry.querySelector('[name="portRange"]').value;
-                            const portName = entry.querySelector('[name="portName"]').value;
-                            if (portRange && portName) {
-                                config += '\nInterface ethernet ' + portRange + '\n';
-                                config += 'Port-name ' + portName + '\n';
-                                config += 'Exit\n';
+                                const portRange = entry.querySelector('[name="portRange"]').value;
+                                const portName = entry.querySelector('[name="portName"]').value;
+                                if (portRange && portName) {
+                                    config += '\nInterface ethernet ' + portRange + '\n';
+                                    config += 'Port-name ' + portName + '\n';
+                                    config += 'Exit\n';
+                                }
+                            });
+
+                            // Initialize a variable for Management VLAN configuration
+                            let mgmtVlanConfig = '';
+
+                            // Handle Management VLAN
+                            const assignMgmtVlan = document.getElementById('assignMgmtVlan').checked;
+                            if (assignMgmtVlan) {
+                                const mgmtVlan = document.getElementById('mgmtVlan').value;
+                                const untaggedEthernet = document.getElementById('untaggedEthernet').value;
+                                const defaultGateway1 = document.getElementById('defaultGateway1').value;
+                                const defaultGateway2 = document.getElementById('defaultGateway2').value;
+
+                                if (mgmtVlan) {
+                                    mgmtVlanConfig += '\nVlan ' + mgmtVlan + '\nManagement-Vlan\n';
+                                }
+                                if (untaggedEthernet) {
+                                    mgmtVlanConfig += 'untagged ethernet ' + untaggedEthernet + '\n';
+                                }
+                                if (defaultGateway1) {
+                                    mgmtVlanConfig += 'default-gateway ' + defaultGateway1 + ' 1\n';
+                                }
+                                if (defaultGateway2) {
+                                    mgmtVlanConfig += 'default-gateway ' + defaultGateway2 + ' 2\n';
+                                }
                             }
-                        });
+
+                            // Append the Management VLAN configuration at the end
+                            config += mgmtVlanConfig;
 
                             document.getElementById('configOutput').textContent = config;
                         }
+
 
 
                         // Function to export the generated configuration as a text file
