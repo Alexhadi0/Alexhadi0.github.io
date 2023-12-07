@@ -1,85 +1,85 @@
-/* Base Styles */
-:root {
-    /* Defines the root element with custom properties (CSS variables) */
-    --primary-color: #ffffff; /* White color for primary elements */
-    --background-color: #333333; /* Dark grey background color */
-    --text-color: #ffffff; /* White color for text */
-    --container-background-color:#0c0021; /* Dark purple background color for containers */
-    --button-background-color:#0c0021; /* Dark purple background color for buttons */
-    --button-text-color: #ffffff; /* White color for button text */
-}
+        /* Base Styles */
+        :root {
+            /* Defines the root element with custom properties (CSS variables) */
+            --primary-color: #ffffff; /* White color for primary elements */
+            --background-color: #333333; /* Dark grey background color */
+            --text-color: #ffffff; /* White color for text */
+            --container-background-color:#0c0021; /* Dark purple background color for containers */
+            --button-background-color:#0c0021; /* Dark purple background color for buttons */
+            --button-text-color: #ffffff; /* White color for button text */
+        }
 
-body {
-    /* Base styling for the body element */
-    font-family: Arial, sans-serif; /* Sets the default font */
-    background-color: var(--background-color); /* Uses the background color variable */
-    padding: 20px; /* Adds padding around the content */
-    color: var(--text-color); /* Sets the text color */
-}
+        body {
+            /* Base styling for the body element */
+            font-family: Arial, sans-serif; /* Sets the default font */
+            background-color: var(--background-color); /* Uses the background color variable */
+            padding: 20px; /* Adds padding around the content */
+            color: var(--text-color); /* Sets the text color */
+        }
 
-h1, h2, h3 {
-    /* Styling for all heading elements (h1, h2, h3) */
-    color: var(--primary-color); /* Sets the color to the primary color variable */
-}
+        h1, h2, h3 {
+            /* Styling for all heading elements (h1, h2, h3) */
+            color: var(--primary-color); /* Sets the color to the primary color variable */
+        }
 
-.container, .vlan-entry {
-    /* Styling for elements with classes 'container' and 'vlan-entry' */
-    background-color: var(--container-background-color); /* Sets the background color */
-    padding: 15px; /* Adds padding inside the containers */
-    margin-bottom: 10px; /* Space below the containers */
-    margin-top: 10px; /* Space above the containers */
-    border-radius: 8px; /* Rounded corners for the containers */
-    width: 35%; /* Sets the width of the containers */
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.932) /* Adds a subtle shadow */
-}
+        .container, .vlan-entry {
+            /* Styling for elements with classes 'container' and 'vlan-entry' */
+            background-color: var(--container-background-color); /* Sets the background color */
+            padding: 15px; /* Adds padding inside the containers */
+            margin-bottom: 10px; /* Space below the containers */
+            margin-top: 10px; /* Space above the containers */
+            border-radius: 8px; /* Rounded corners for the containers */
+            width: 35%; /* Sets the width of the containers */
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.932) /* Adds a subtle shadow */
+        }
 
-/* Form Styles */
-label {
-    /* Styling for <label> elements */
-    display: block; /* Makes the label take up the full width */
-    margin-bottom: 5px; /* Space below each label */
-}
+        /* Form Styles */
+        label {
+            /* Styling for <label> elements */
+            display: block; /* Makes the label take up the full width */
+            margin-bottom: 5px; /* Space below each label */
+        }
 
-input[type="text"], select {
-    /* Styling for text input fields and select elements */
-    width: 97%; /* Sets the width to almost full container width */
-    padding: 8px; /* Adds padding inside the elements */
-    margin-bottom: 10px; /* Space below each input/select */
-    border: 1px solid #ccc; /* Sets a light grey border */
-    border-radius: 4px; /* Rounded corners for the inputs/selects */
-}
+        input[type="text"], select {
+            /* Styling for text input fields and select elements */
+            width: 97%; /* Sets the width to almost full container width */
+            padding: 8px; /* Adds padding inside the elements */
+            margin-bottom: 10px; /* Space below each input/select */
+            border: 1px solid #ccc; /* Sets a light grey border */
+            border-radius: 4px; /* Rounded corners for the inputs/selects */
+        }
 
-button {
-    /* Styling for <button> elements */
-    background-color: var(--button-background-color); /* Sets the background color */
-    color: var(--button-text-color); /* Sets the text color */
-    padding: 10px 15px; /* Adds padding inside the button */
-    border: none; /* Removes the default border */
-    border-radius: 4px; /* Rounded corners for the button */
-    cursor: pointer; /* Changes the cursor to indicate it's clickable */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-}
+        button {
+            /* Styling for <button> elements */
+            background-color: var(--button-background-color); /* Sets the background color */
+            color: var(--button-text-color); /* Sets the text color */
+            padding: 10px 15px; /* Adds padding inside the button */
+            border: none; /* Removes the default border */
+            border-radius: 4px; /* Rounded corners for the button */
+            cursor: pointer; /* Changes the cursor to indicate it's clickable */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
 
-button:hover {
-    /* Styling for the hover state of buttons */
-    background-color: darken(var(--button-background-color), 10%); /* Darkens the button background on hover */
-}
+        button:hover {
+            /* Styling for the hover state of buttons */
+            background-color: darken(var(--button-background-color), 10%); /* Darkens the button background on hover */
+        }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    /* Styles that apply when the screen width is 768px or less */
-    input[type="text"], select {
-        width: 100%; /* Full width for inputs and selects on smaller screens */
-    }
-}
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            /* Styles that apply when the screen width is 768px or less */
+            input[type="text"], select {
+                width: 100%; /* Full width for inputs and selects on smaller screens */
+            }
+        }
 
-/* New Styles for Checkboxes */
-.checkbox-container {
-    margin-bottom: 10px;
-}
+        /* New Styles for Checkboxes */
+        .checkbox-container {
+            margin-bottom: 10px;
+        }
 
-.checkbox-container .info {
-    font-size: 0.9em;
-    color: var(--text-color);
-}
+        .checkbox-container .info {
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
 
