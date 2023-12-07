@@ -40,7 +40,7 @@
                             });
                         });
 
-                        
+
                         // New functions for handling TFTP and Telnet VLAN checkboxes
                         function handleTftpChange() {
                             if (this.checked) {
@@ -229,14 +229,17 @@
                                 }
                             });
 
-                            // Code for port naming
-                            const portRange = document.getElementById('portRange').value;
-                            const portName = document.getElementById('portName').value;
+                         // Handle Port Labels
+                            const portLabelEntries = document.querySelectorAll('#portLabelSection .vlan-entry');
+                            portLabelEntries.forEach(entry => {
+                            const portRange = entry.querySelector('[name="portRange"]').value;
+                            const portName = entry.querySelector('[name="portName"]').value;
                             if (portRange && portName) {
                                 config += '\nInterface ethernet ' + portRange + '\n';
                                 config += 'Port-name ' + portName + '\n';
                                 config += 'Exit\n';
                             }
+                        });
 
                             document.getElementById('configOutput').textContent = config;
                         }
