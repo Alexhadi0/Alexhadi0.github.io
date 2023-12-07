@@ -1,142 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Metadata and references -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruckus Config Generator</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS stylesheet -->
-</head>
-<body>
-    <main>
-        <!-- Title of the application -->
-        <h1>Ruckus Switch Configuration Generator</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Metadata and references -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ruckus Config Generator</title>
+        <link rel="stylesheet" href="style.css"> <!-- Link to the CSS stylesheet -->
+    </head>
+    <body>
+        <main>
+            <!-- Title of the application -->
+            <h1>Ruckus Switch Configuration Generator</h1>
 
-        <section>
-            <!-- Section for inputting basic and VLAN configurations -->
-            <h2>Configurations</h2>
-            <form class="config-form" id="configForm">
-                <!-- Input fields for basic switch settings -->
-                <div class="vlan-entry">
-                    <label for="hostname">Hostname:</label>
-                    <input type="text" id="hostname" placeholder="SRS-VGD-CORE01-TELE" required>
-
-                    <label for="mgmtip">Management IP:</label>
-                    <input type="text" id="mgmtip" placeholder="172.26.231.2" required>
-
-                    <label for="mgmtsubnet">Management Subnet Mask:</label>
-                    <input type="text" id="mgmtsubnet" placeholder="255.255.255.128" required>
-                </div>
-
-                <!-- Section for VLAN configurations -->
-                <h2>VLAN Configurations</h2>
-                <div id="vlanSection" class="vlan-section">
-                    <!-- Template for VLAN entry, to be cloned for additional VLANs -->
+            <section>
+                <!-- Section for inputting basic and VLAN configurations -->
+                <h2>Configurations</h2>
+                <form class="config-form" id="configForm">
+                    <!-- Input fields for basic switch settings -->
                     <div class="vlan-entry">
-                        <label for="vlanId">Vlan ID:</label>
-                        <input type="text" class="vlanId" placeholder="e.g., 120" required>
+                        <label for="hostname">Hostname:</label>
+                        <input type="text" id="hostname" placeholder="SRS-VGD-CORE01-TELE" required>
 
-                        <label for="vlanName">Vlan Name:</label>
-                        <input type="text" class="vlanName" placeholder="e.g., Guest" required>
+                        <label for="mgmtip">Management IP:</label>
+                        <input type="text" id="mgmtip" placeholder="172.26.231.2" required>
 
-                        <label for="taggedPorts">Tagged Ports:</label>
-                        <input type="text" class="taggedPorts" placeholder="e.g., 1/1/1 to 1/1/48">
-
-                        <label for="untaggedPorts">Untagged Ports:</label>
-                        <input type="text" class="untaggedPorts" placeholder="e.g., 1/2/1 to 1/2/1">
+                        <label for="mgmtsubnet">Management Subnet Mask:</label>
+                        <input type="text" id="mgmtsubnet" placeholder="255.255.255.128" required>
                     </div>
-                </div>
 
-                <!-- Buttons to add or remove VLAN entries -->
-                <div class="button-container">
-                    <button type="button" id="addVlanBtn">Add More VLAN</button>
-                    <button type="button" id="removeVlanBtn">Remove Last VLAN</button>
-                </div>
+                    <!-- Section for VLAN configurations -->
+                    <h2>VLAN Configurations</h2>
+                    <div id="vlanSection" class="vlan-section">
+                        <!-- Template for VLAN entry, to be cloned for additional VLANs -->
+                        <div class="vlan-entry">
+                            <label for="vlanId">Vlan ID:</label>
+                            <input type="text" class="vlanId" placeholder="e.g., 120" required>
+
+                            <label for="vlanName">Vlan Name:</label>
+                            <input type="text" class="vlanName" placeholder="e.g., Guest" required>
+
+                            <label for="taggedPorts">Tagged Ports:</label>
+                            <input type="text" class="taggedPorts" placeholder="e.g., 1/1/1 to 1/1/48">
+
+                            <label for="untaggedPorts">Untagged Ports:</label>
+                            <input type="text" class="untaggedPorts" placeholder="e.g., 1/2/1 to 1/2/1">
+                        </div>
+                    </div>
+
+                    <!-- Buttons to add or remove VLAN entries -->
+                    <div class="button-container">
+                        <button type="button" id="addVlanBtn">Add More VLAN</button>
+                        <button type="button" id="removeVlanBtn">Remove Last VLAN</button>
+                    </div>
 
 
 
-                <!-- Section for port labeling -->
-                <h2>Port Label</h2>
-                <div id="portLabelSection">
-                    <!-- Template for port label entry -->
+                    <!-- Section for port labeling -->
+                    <h2>Port Label</h2>
+                    <div id="portLabelSection">
+                        <!-- Template for port label entry -->
+                        <div class="vlan-entry">
+                            <label for="portRange">Port Range:</label>
+                            <input type="text" id="portRange" name="portRange" placeholder="(e.g., 1/1/9 to 1/1/10)">
+                            <label for="portName">Port Name:</label>
+                            <input type="text" id="portName" name="portName" placeholder="(e.g., Uplink to FW):">
+                        </div>
+                    </div>
+                    <!-- Buttons to add or remove port label entries -->
+                    <button type="button" id="addPortLabelBtn">Add More Port Label</button>
+                    <button type="button" id="removePortLabelBtn">Remove Last Port Label</button>
+
+                    <!-- New Checkboxes for TFTP and Telnet VLAN -->
                     <div class="vlan-entry">
-                        <label for="portRange">Port Range:</label>
-                        <input type="text" id="portRange" name="portRange" placeholder="(e.g., 1/1/9 to 1/1/10)">
-                        <label for="portName">Port Name:</label>
-                        <input type="text" id="portName" name="portName" placeholder="(e.g., Uplink to FW):">
+                    <label for="disableTftp">Disable TFTP</label>
+                    <input type="checkbox" id="disableTftp">
+                    <p class="info">TFTP client access is enabled or disabled.</p>
                     </div>
+                                
+                    <div class="vlan-entry">
+                    <label for="specificTelnetVlan">Specific Telnet VLAN?</label>
+                    <input type="checkbox" id="specificTelnetVlan">
+                    <div id="vlanInputContainer" style="display: none;">
+                    <label for="telnetVlanNumber">VLAN Number:</label>
+                    <input type="text" id="telnetVlanNumber" placeholder="Enter VLAN Number">
                 </div>
-                <!-- Buttons to add or remove port label entries -->
-                <button type="button" id="addPortLabelBtn">Add More Port Label</button>
-                <button type="button" id="removePortLabelBtn">Remove Last Port Label</button>
-
-                 <!-- New Checkboxes for TFTP and Telnet VLAN -->
-                 <div class="vlan-entry">
-                 <label for="disableTftp">Disable TFTP</label>
-                 <input type="checkbox" id="disableTftp">
-                 <p class="info">TFTP client access is enabled or disabled.</p>
-                 </div>
-                            
-                 <div class="vlan-entry">
-                 <label for="specificTelnetVlan">Specific Telnet VLAN?</label>
-                 <input type="checkbox" id="specificTelnetVlan">
-                 <div id="vlanInputContainer" style="display: none;">
-                 <label for="telnetVlanNumber">VLAN Number:</label>
-                 <input type="text" id="telnetVlanNumber" placeholder="Enter VLAN Number">
-             </div>
-        </div>
-        <!-- New Checkboxes for Restric AAA -->
-        <div class="vlan-entry">
-            <label for="restrictAaaAccess">Restrict AAA Access to Local</label>
-            <input type="checkbox" id="restrictAaaAccess">
             </div>
-            
+
             <div class="vlan-entry">
-            <label for="szActiveList">sz active-list</label>
-            <select id="szActiveList">
-            <option value="">Select an option</option>
-            <option value="52.136.157.118">52.136.157.118</option>
-            </select>
-        </div>
-                 <!-- New Checkboxes for SNMP, Web managment, Web management -->
-                 <div class="vlan-entry">
-                    <label for="disableSnmpAccess">Disable SNMP Access?</label>
-                    <input type="checkbox" id="disableSnmpAccess">
-                    <p class="info">Disable SNMP server access if checked.</p>
-                </div>
-
-                <div class="vlan-entry">
-                    <label for="disableWebManagement">Disable Web Management Access?</label>
-                    <input type="checkbox" id="disableWebManagement">
-                    <p class="info">Disable web management via HTTP if checked.</p>
-                </div>
-
-                <div class="vlan-entry">
-                    <label for="disableWebManagementByHp">Disable Web Management by HP ProCurve Manager?</label>
-                    <input type="checkbox" id="disableWebManagementByHp">
-                    <p class="info">Disable web management by HP ProCurve Manager if checked.</p>
-                </div>
-
-                <div class="vlan-entry">
-                    <label for="jumbo">Jumbo?</label>
-                    <input type="checkbox" id="jumbo">
-                    <p class="info">Enable jumbo frames if checked.</p>
-                </div>
-                <!-- Button to generate the configuration -->
-                <div>
-                    <button type="submit" class="gul">Generate Configuration;</button>
-                </div>
-            </form>
-
-            <!-- Section to display the generated configuration -->
-            <div class="output-container">
-                <h2>Generated Configuration</h2>
-                <pre id="configOutput"></pre>
-                <button type="button" id="exportBtn">Export Configuration</button>
+                <label for="szActiveList">sz active-list</label>
+                <select id="szActiveList">
+                <option value="">Select an option</option>
+                <option value="82.196.177.108">82.196.177.108</option>
+                </select>
             </div>
-        </section>
-    </main>
-    <!-- Link to the JavaScript file -->
-    <script src="script.js"></script>
-</body>
-</html>
+            <!-- New Checkboxes for Restric AAA -->
+            <div class="vlan-entry">
+                <label for="restrictAaaAccess">Restrict AAA Access to Local</label>
+                <input type="checkbox" id="restrictAaaAccess">
+                </div>
+                
+                    <!-- New Checkboxes for SNMP, Web managment, Web management -->
+                    <div class="vlan-entry">
+                        <label for="disableSnmpAccess">Disable SNMP Access?</label>
+                        <input type="checkbox" id="disableSnmpAccess">
+                        <p class="info">Disable SNMP server access if checked.</p>
+                    </div>
+
+                    <div class="vlan-entry">
+                        <label for="disableWebManagement">Disable Web Management Access?</label>
+                        <input type="checkbox" id="disableWebManagement">
+                        <p class="info">Disable web management via HTTP if checked.</p>
+                    </div>
+
+                    <div class="vlan-entry">
+                        <label for="disableWebManagementByHp">Disable Web Management by HP ProCurve Manager?</label>
+                        <input type="checkbox" id="disableWebManagementByHp">
+                        <p class="info">Disable web management by HP ProCurve Manager if checked.</p>
+                    </div>
+
+                    <div class="vlan-entry">
+                        <label for="jumbo">Jumbo?</label>
+                        <input type="checkbox" id="jumbo">
+                        <p class="info">Enable jumbo frames if checked.</p>
+                    </div>
+                    <!-- Button to generate the configuration -->
+                    <div>
+                        <button type="submit" class="gul">Generate Configuration;</button>
+                    </div>
+                </form>
+
+                <!-- Section to display the generated configuration -->
+                <div class="output-container">
+                    <h2>Generated Configuration</h2>
+                    <pre id="configOutput"></pre>
+                    <button type="button" id="exportBtn">Export Configuration</button>
+                </div>
+            </section>
+        </main>
+        <!-- Link to the JavaScript file -->
+        <script src="script.js"></script>
+    </body>
+    </html>
